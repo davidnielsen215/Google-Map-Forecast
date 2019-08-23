@@ -9,13 +9,13 @@ const DisplayTable = (props) => {
                 <ol>lattitude {props.lat}</ol>
                 <ol>longitude {props.lng}</ol>
                 <ol >Location {props.location} </ol>
-                <ol>Condition</ol>
-                <ol >Temperature</ol>
-                <ol>Humidity</ol>
-                <ol >Sunrise</ol>
-                <ol>Sunset</ol>
-                <ol >Wind Speed</ol>
-                <ol>Wind Direction</ol>
+                <ol>Condition {props.condition}</ol>
+                <ol >Temperature {props.temperature}</ol>
+                <ol>Humidity {props.humidity}</ol>
+                <ol >Sunrise {props.sunrise}</ol>
+                <ol>Sunset {props.sunset}</ol>
+                <ol >Wind Speed {props.windSpeed}</ol>
+                <ol>Wind Direction {props.windDirection}</ol>
             </div>
         </div>
     )

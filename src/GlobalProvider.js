@@ -32,13 +32,48 @@ export class GlobalProvider extends Component {
     handleLocation = () => {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
         .then(response => {
-            console.log(response.data)
+            console.log(response.data.name)
 
             this.setState({
                 location: response.data.name
             })
         })
     }
+
+    // handleCondition = () => {
+    //     axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
+    //     .then(response => {
+    //         console.log(response.data.weather)
+            
+    //         this.setState({
+    //             condition: response.data.weather
+    //         })
+    //     })
+
+    // }
+
+    handleTemperature = () => {
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
+        .then(response => {
+            console.log(response.data.main.temp)
+
+            this.setState({
+                temperature: response.data.main.temp
+            })
+        })
+    }
+
+    handleHumidity = () => {
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
+        .then(response => {
+            console.log(response.data.main.humidity)
+
+            this.setState({
+                humidity: response.data.main.humidity
+            })
+        })
+    }
+
     
 
     render(){
@@ -47,7 +82,10 @@ export class GlobalProvider extends Component {
                 ...this.state, 
                 
                 handleCoordinate: this.handleCoordinate,
-                handleLocation: this.handleLocation
+                handleLocation: this.handleLocation,
+                // handleCondition: this.handleCondition,
+                handleTemperature: this.handleTemperature,
+                handleHumidity: this.handleHumidity
             }}>
                 {this.props.children}
             </Provider>
