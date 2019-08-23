@@ -74,6 +74,28 @@ export class GlobalProvider extends Component {
         })
     }
 
+    handleSunrise = () => {
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
+        .then(response => {
+            console.log(response.data.sys.sunrise)
+
+            this.setState({
+                sunrise: response.data.sys.sunrise
+            })
+        })
+    }
+
+    handleSunset = () => {
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
+        .then(response => {
+            console.log(response.data.sys.sunset)
+
+            this.setState({
+                sunset: response.data.sys.sunset
+            })
+        })
+    }
+
     
 
     render(){
@@ -85,7 +107,9 @@ export class GlobalProvider extends Component {
                 handleLocation: this.handleLocation,
                 // handleCondition: this.handleCondition,
                 handleTemperature: this.handleTemperature,
-                handleHumidity: this.handleHumidity
+                handleHumidity: this.handleHumidity,
+                handleSunrise: this.handleSunrise,
+                handleSunset: this.handleSunset
             }}>
                 {this.props.children}
             </Provider>

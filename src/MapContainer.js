@@ -25,6 +25,8 @@ export class MapContainer extends Component {
         // this.props.handleCondition()
         this.props.handleTemperature()
         this.props.handleHumidity()
+        this.props.handleSunrise()
+        this.props.handleSunset()
             console.log(lat)
             console.log(lng)
 
