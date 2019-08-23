@@ -1,7 +1,18 @@
 .forecast{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin-left: 70%;
     margin-top: 5%;
     /* padding: 1%; */
 }
 
+#blue{
+    background: rgb(201, 229, 248);
+    padding: 10px;
+    padding-left: 45px;
+}
+
+#yel{
+    background: rgb(253, 239, 191);
+    padding: 10px;
+    padding-left: 45px;
+}

@@ -14,12 +14,6 @@ export class GlobalProvider extends Component {
             sunset: '',
             windSpeed: '',
             windDirection: '',
-            // markers: [{
-            //     position: {   
-            //         lat: '',
-            //         lng: '' 
-            //     }
-            // }],
             lat: 40.7508,
             lng: -111.8710 
         }
@@ -28,6 +22,24 @@ export class GlobalProvider extends Component {
     handleCoordinate = (lat, lng) => {
         this.setState({lat, lng})
     }
+
+    // handleWeather = () => {
+    //     axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
+    //     .then(response => {
+    //         // console.log(response.data.name)
+
+    //         this.setState({
+    //             location: response.data.name,
+    //             condition: response.data.weather[0].description,
+    //             temperature: response.data.main.temp,
+    //             humidity: response.data.main.humidity,
+    //             sunrise: response.data.sys.sunrise,
+    //             sunset: response.data.sys.sunset,
+    //             windSpeed: response.data.wind.speed,
+    //             windDirection: response.data.wind.deg
+    //         })
+    //     })
+    // }
 
     handleLocation = () => {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
@@ -40,22 +52,23 @@ export class GlobalProvider extends Component {
         })
     }
 
-    // handleCondition = () => {
-    //     axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
-    //     .then(response => {
-    //         console.log(response.data.weather)
+    handleCondition = () => {
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
+        .then(response => {
+            console.log(response.data.weather[0].description)
             
-    //         this.setState({
-    //             condition: response.data.weather
-    //         })
-    //     })
 
-    // }
+            this.setState({
+                condition: response.data.weather[0].description
+            })
+            })
+        }
 
     handleTemperature = () => {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
         .then(response => {
             console.log(response.data.main.temp)
+            // const temp = response.data.main.temp.map()
 
             this.setState({
                 temperature: response.data.main.temp
@@ -96,20 +109,44 @@ export class GlobalProvider extends Component {
         })
     }
 
+    handleWindSpeed = () => {
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
+        .then(response => {
+            console.log(response.data.wind.speed)
+
+            this.setState({
+                windSpeed: response.data.wind.speed
+            })
+        })
+    }
+    handleWindDirection = () => {
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
+        .then(response => {
+            console.log(response.data.wind.deg)
+
+            this.setState({
+                windDirection: response.data.wind.deg
+
+            })
+        })
+    }
+
     
 
     render(){
         return(
             <Provider value={{
                 ...this.state, 
-                
+                    // handleWeather: this.handleWeather
                 handleCoordinate: this.handleCoordinate,
                 handleLocation: this.handleLocation,
-                // handleCondition: this.handleCondition,
+                handleCondition: this.handleCondition,
                 handleTemperature: this.handleTemperature,
                 handleHumidity: this.handleHumidity,
                 handleSunrise: this.handleSunrise,
-                handleSunset: this.handleSunset
+                handleSunset: this.handleSunset,
+                handleWindSpeed: this.handleWindSpeed,
+                handleWindDirection: this.handleWindDirection
             }}>
                 {this.props.children}
             </Provider>

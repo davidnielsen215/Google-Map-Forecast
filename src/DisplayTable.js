@@ -6,16 +6,16 @@ const DisplayTable = (props) => {
     return(
         <div>
             <div className="forecast">
-                <ol>lattitude {props.lat}</ol>
-                <ol>longitude {props.lng}</ol>
-                <ol >Location {props.location} </ol>
-                <ol>Condition {props.condition}</ol>
-                <ol >Temperature {props.temperature}</ol>
-                <ol>Humidity {props.humidity}</ol>
-                <ol >Sunrise {props.sunrise}</ol>
-                <ol>Sunset {props.sunset}</ol>
-                <ol >Wind Speed {props.windSpeed}</ol>
-                <ol>Wind Direction {props.windDirection}</ol>
+                {/* <ol><b>lattitude</b> {props.lat}</ol>
+                <ol><b>longitude </b>{props.lng}</ol> */}
+                <div id='yel'> <b>Location</b> {props.location} </div>
+                <div id='blue'> <b>Condition</b> {props.condition}</div>
+                <div id='yel'> <b>Temperature</b> {props.temperature}</div>
+                <div id='blue'> <b>Humidity</b> {props.humidity}</div>
+                <div id='yel'> <b>Sunrise</b> {props.sunrise}</div>
+                <div id='blue'> <b>Sunset </b>{props.sunset}</div>
+                <div id='yel'> <b>Wind Speed </b>{props.windSpeed}</div>
+                <div id='blue'> <b>Wind Direction</b> {props.windDirection}</div>
             </div>
         </div>
     )
