@@ -20,7 +20,6 @@ export class MapContainer extends Component {
         const { latLng } = coord
         const lat = latLng.lat()
         const lng = latLng.lng()
-        // this.props.handleWeather()
         this.props.handleCoordinate(lat, lng)
         this.props.handleLocation()
         this.props.handleCondition()

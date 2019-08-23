@@ -23,24 +23,6 @@ export class GlobalProvider extends Component {
         this.setState({lat, lng})
     }
 
-    // handleWeather = () => {
-    //     axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
-    //     .then(response => {
-    //         // console.log(response.data.name)
-
-    //         this.setState({
-    //             location: response.data.name,
-    //             condition: response.data.weather[0].description,
-    //             temperature: response.data.main.temp,
-    //             humidity: response.data.main.humidity,
-    //             sunrise: response.data.sys.sunrise,
-    //             sunset: response.data.sys.sunset,
-    //             windSpeed: response.data.wind.speed,
-    //             windDirection: response.data.wind.deg
-    //         })
-    //     })
-    // }
-
     handleLocation = () => {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
         .then(response => {
@@ -55,7 +37,6 @@ export class GlobalProvider extends Component {
     handleCondition = () => {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
         .then(response => {
-            // console.log(response.data.weather[0].description)
             const cond = response.data.weather[0].description
             
             function capFirst(str){
@@ -166,7 +147,6 @@ export class GlobalProvider extends Component {
         return(
             <Provider value={{
                 ...this.state, 
-                    // handleWeather: this.handleWeather
                 handleCoordinate: this.handleCoordinate,
                 handleLocation: this.handleLocation,
                 handleCondition: this.handleCondition,
