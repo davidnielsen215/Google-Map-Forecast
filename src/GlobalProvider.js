@@ -30,18 +30,12 @@ export class GlobalProvider extends Component {
     }
 
     handleLocation = () => {
-        
-
-        this.setState({
-            location: ''
-        })
-
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
         .then(response => {
             console.log(response.data)
 
             this.setState({
-                location: 'fired'
+                location: response.data.name
             })
         })
     }

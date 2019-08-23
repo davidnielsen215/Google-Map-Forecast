@@ -21,7 +21,7 @@ export class MapContainer extends Component {
         const lat = latLng.lat()
         const lng = latLng.lng()
         this.props.handleCoordinate(lat, lng)
-        // this.props.handleLocation()
+        this.props.handleLocation()
             console.log(lat)
             console.log(lng)
 
