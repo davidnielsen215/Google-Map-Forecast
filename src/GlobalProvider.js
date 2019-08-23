@@ -55,11 +55,22 @@ export class GlobalProvider extends Component {
     handleCondition = () => {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
         .then(response => {
-            console.log(response.data.weather[0].description)
+            // console.log(response.data.weather[0].description)
+            const cond = response.data.weather[0].description
             
+            function capFirst(str){
+                str = str.split(' ')
+
+                for (let i = 0; i < str.length; i++){
+                    str[i] = str[i][0].toUpperCase() + str[i].substr(1)
+
+                }
+                return str.join(' ')
+            }
+            console.log(capFirst(cond))
 
             this.setState({
-                condition: response.data.weather[0].description
+                condition: capFirst(cond)
             })
             })
         }
@@ -68,10 +79,13 @@ export class GlobalProvider extends Component {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
         .then(response => {
             console.log(response.data.main.temp)
-            // const temp = response.data.main.temp.map()
+            const celcius = response.data.main.temp -273 //KELVIN
+            const cToF = celcius * 9 / 5 +32
+            const dispF = cToF.toFixed(2)
+
 
             this.setState({
-                temperature: response.data.main.temp
+                temperature: dispF + ' F°'
             })
         })
     }
@@ -82,7 +96,7 @@ export class GlobalProvider extends Component {
             console.log(response.data.main.humidity)
 
             this.setState({
-                humidity: response.data.main.humidity
+                humidity: response.data.main.humidity + '%'
             })
         })
     }
@@ -91,9 +105,16 @@ export class GlobalProvider extends Component {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
         .then(response => {
             console.log(response.data.sys.sunrise)
+            const milliSunrise = response.data.sys.sunrise
+
+            let date = new Date (milliSunrise * 1000)
+            let hours = date.getHours()
+            let minutes = '0' + date.getMinutes()
+
+            let sunriseTime = hours + ':' + minutes.substr(-2)
 
             this.setState({
-                sunrise: response.data.sys.sunrise
+                sunrise: sunriseTime
             })
         })
     }
@@ -102,9 +123,17 @@ export class GlobalProvider extends Component {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lng}&APPID=a3a7340c7c6572b7b7d92eb4c451ff67`)
         .then(response => {
             console.log(response.data.sys.sunset)
+            const milliSunset = response.data.sys.sunset
+            
+            let date = new Date (milliSunset * 1000)
+            let hours = date.getHours()
+            let minutes = '0' + date.getMinutes()
+
+            let sunsetTime = hours + ':' + minutes.substr(-2)
+
 
             this.setState({
-                sunset: response.data.sys.sunset
+                sunset: sunsetTime 
             })
         })
     }
@@ -115,7 +144,7 @@ export class GlobalProvider extends Component {
             console.log(response.data.wind.speed)
 
             this.setState({
-                windSpeed: response.data.wind.speed
+                windSpeed: response.data.wind.speed + ' mph'
             })
         })
     }
@@ -125,7 +154,7 @@ export class GlobalProvider extends Component {
             console.log(response.data.wind.deg)
 
             this.setState({
-                windDirection: response.data.wind.deg
+                windDirection: Math.trunc(response.data.wind.deg) + ' degrees'
 
             })
         })
