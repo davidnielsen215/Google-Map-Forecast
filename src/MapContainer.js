@@ -21,6 +21,7 @@ export class MapContainer extends Component {
         const lat = latLng.lat()
         const lng = latLng.lng()
         this.props.handleCoordinate(lat, lng)
+        // this.props.handleLocation()
             console.log(lat)
             console.log(lng)
 
@@ -34,10 +35,7 @@ export class MapContainer extends Component {
             }
         })
     }
-    
-    
       
-
     render() {
 
         const mapSize = {
@@ -60,13 +58,12 @@ export class MapContainer extends Component {
                 onClick={this.onClick}
             >
      
-     {this.state.markers.map((marker, index) => (
+            {this.state.markers.map((marker, index) => (
             <Marker
               key={index}
-              title={marker.title}
-              name={marker.name}
               position={marker.position}
               draggable={true}
+              onDragend={this.onClick}
             />
           ))}
      
@@ -78,7 +75,6 @@ export class MapContainer extends Component {
 
 export default GoogleApiWrapper({
     apiKey: ('AIzaSyC-rfY59_Vfk_qUNw_fsP7B1nixnS6Y5tU')
-})
-(withProvider(MapContainer))
+})(withProvider(MapContainer))
 
 
