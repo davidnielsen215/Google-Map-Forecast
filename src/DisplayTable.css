@@ -1,6 +1,14 @@
+
 .forecast{
     margin-left: 70%;
     margin-top: 5%;
+    padding-left: none;
+}
+
+.mapSize{
+    /* margin-left: 5%; */
+    width: 40%;
+    height: 80%;
 }
 
 #blue{
@@ -13,4 +21,18 @@
     background: rgb(253, 239, 191);
     padding: 10px;
     padding-left: 45px;
+}
+
+@media screen and (max-width: 500px){
+    
+    .mapSize{
+        padding-left: 10%;
+        width: 40%;
+        height: 50%;
+    }
+        .forecast{
+        margin-left: 10%;
+        margin-top: 175%;
+        width: 80%;
+    }
 }

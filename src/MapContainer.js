@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react'
 import {withProvider} from './GlobalProvider'
+import './DisplayTable.css'
 
 export class MapContainer extends Component {
     constructor(){
@@ -46,7 +47,7 @@ export class MapContainer extends Component {
     render() {
 
         const mapSize = {
-            marginLeft: '5%',
+            marginLeft: '2%',
             width: '60%',
             height: '80%'
         }
@@ -58,24 +59,28 @@ export class MapContainer extends Component {
         }
 
         return (
-            <Map  google={this.props.google} 
-                zoom={11}
-                style={mapSize}
-                initialCenter = {initialPoint} 
-                onClick={this.onClick}
-            >
+            // <div className='mapSize'>
+
+                <Map  
+                    google={this.props.google} 
+                    zoom={11}
+                    style={mapSize}
+                    initialCenter = {initialPoint} 
+                    onClick={this.onClick}
+                >
      
             {this.state.markers.map((marker, index) => (
-            <Marker
-              key={index}
-              position={marker.position}
-              draggable={true}
-              onDragend={this.onClick}
-            />
-          ))}
+                <Marker
+                key={index}
+                position={marker.position}
+                draggable={true}
+                onDragend={this.onClick}
+                />
+                ))}
      
            
           </Map>
+                // </div>
         )
       }
     }
